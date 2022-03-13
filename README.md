@@ -7,7 +7,8 @@ Whats is ready:
 - Nextcloud (Only in HTTP).
 
 What needs to be done:
-- NGINX reverse HTTPS with certbot SSL certificates.
+- NGINX reverse HTTP and HTTPS proxy (the "nc_nginx" container);
+- Let's Encrypt certificate renovation (maybe do it on the "nc_nginx" container).
 
 
 Procedure to install to the folder /docker on a linux machine
