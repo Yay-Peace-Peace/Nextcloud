@@ -1,5 +1,5 @@
 # Nextcloud
-Docker and Docker Compose configuration procedure for deploying Nextcloud on production environment
+Docker and Docker Compose configuration for deploying Nextcloud on production environment
 
 Whats is ready:
 - Database;
