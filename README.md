@@ -9,6 +9,8 @@ Whats is ready:
 What needs to be done:
 - NGINX reverse HTTPS with certbot SSL certificates.
 
+
+Procedure to install to the folder /docker on a linux machine
 <pre>
 wget https://codeload.github.com/YayPeace/Nextcloud/zip/refs/heads/main
 unzip ./Nextcloud-main.zip
