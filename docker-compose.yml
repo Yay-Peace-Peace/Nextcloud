@@ -1,0 +1,58 @@
+version: "3.7"
+services:
+  nc_nextcloud:
+    image: nextcloud:production-apache
+    container_name: nc_nextcloud
+    restart: always
+    volumes:
+      - /docker/nc_nextcloud/var/www/html/:/var/www/html/
+    #ports:
+    # - "80:80"
+    environment:
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextclouduser
+      MYSQL_PASSWORD: Change2
+      MYSQL_HOST: nc_database
+      NEXTCLOUD_ADMIN_USER: admin
+      NEXTCLOUD_ADMIN_PASSWORD: Change3
+      NEXTCLOUD_TRUSTED_DOMAINS: "localhost 127.0.0.1 tsukihi.duckdns.org 193.123.109.31"
+      REDIS_HOST: nc_redis
+      REDIS_HOST_PORT: 6379
+    depends_on:
+      - nc_database
+      - nc_redis
+  nc_database:
+    image: mysql
+    container_name: nc_database
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - /docker/nc_database/var/lib/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Change1
+      MYSQL_PASSWORD: Change2
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextclouduser
+  nc_redis:
+    image: redis:alpine
+    container_name: nc_redis
+    restart: always
+    volumes:
+      - /docker/nc_redis/usr/local/etc/redis:/usr/local/etc/redis
+      - /docker/nc_redis/data:/data
+  nc_nginx:
+    build:
+      context: ./build/nc_nginx
+      args:
+        DOMAIN_NAME: tsukihi.duckdns.org
+    container_name: nc_nginx
+    restart: always
+    environment:
+      DOMAIN_NAME: tsukihi.duckdns.org
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on:
+      - nc_nextcloud
