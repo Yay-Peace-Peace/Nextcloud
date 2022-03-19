@@ -1,13 +1,15 @@
 FROM nginx
 
+ENV DOMAIN_NAME tsukihi.duckdns.org
+
 RUN echo $DOMAIN_NAME
 RUN echo $DOMAIN_NAME
 RUN echo $DOMAIN_NAME
 RUN echo $DOMAIN_NAME
 RUN echo $DOMAIN_NAME
 
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-COPY ./nginx.conf /etc/nginx/nginx.conf
+#COPY ./default.conf /etc/nginx/conf.d/default.conf
+#COPY ./nginx.conf /etc/nginx/nginx.conf
 
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/$DOMAIN_NAME.conf
 
