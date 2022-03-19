@@ -13,9 +13,10 @@ What needs to be done:
 
 Procedure to install to the folder /docker on a linux machine
 <pre>
-wget https://codeload.github.com/YayPeace/Nextcloud/zip/refs/heads/main
-unzip ./Nextcloud-main.zip
-mv ./Nextcloud-main /docker
+cd
+wget https://codeload.github.com/YayPeace/Nextcloud/zip/refs/heads/main -o main.zip
+unzip ./main
+mv ./Nextcloud-main/* /docker
 cd /docker
-docker-compode up -d
+docker-compose up -d
 </pre>
