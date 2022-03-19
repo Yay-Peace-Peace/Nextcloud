@@ -1,3 +1,5 @@
+
+  
 version: "3.7"
 services:
   nc_nextcloud:
@@ -15,7 +17,7 @@ services:
       MYSQL_HOST: nc_database
       NEXTCLOUD_ADMIN_USER: admin
       NEXTCLOUD_ADMIN_PASSWORD: Change3
-      NEXTCLOUD_TRUSTED_DOMAINS: "localhost 127.0.0.1 tsukihi.duckdns.org 193.123.109.31"
+      NEXTCLOUD_TRUSTED_DOMAINS: "localhost 127.0.0.1"
       REDIS_HOST: nc_redis
       REDIS_HOST_PORT: 6379
     depends_on:
@@ -49,6 +51,9 @@ services:
         DOMAIN_NAME: tsukihi.duckdns.org
     container_name: nc_nginx
     restart: always
+    volumes:
+      - /docker/nc_nginx/etc/nginx:/etc/nginx
+      - /docker/nc_nginx/etc/letsencrypt:/etc/letsencrypt
     environment:
       DOMAIN_NAME: tsukihi.duckdns.org
     ports:
