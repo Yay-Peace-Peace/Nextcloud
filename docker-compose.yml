@@ -1,5 +1,3 @@
-
-  
 version: "3.7"
 services:
   nc_nextcloud:
@@ -45,10 +43,10 @@ services:
       - /docker/nc_redis/usr/local/etc/redis:/usr/local/etc/redis
       - /docker/nc_redis/data:/data
   nc_nginx:
-    build:
-      context: ./build/nc_nginx
-      args:
-        DOMAIN_NAME: tsukihi.duckdns.org
+    image: nginx
+     # context: ./build/nc_nginx
+     # args:
+     #   DOMAIN_NAME: tsukihi.duckdns.org
     container_name: nc_nginx
     restart: always
     volumes:
