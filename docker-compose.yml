@@ -6,8 +6,6 @@ services:
     restart: always
     volumes:
       - /docker/nc_nextcloud/var/www/html/:/var/www/html/
-    #ports:
-    # - "80:80"
     environment:
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextclouduser
@@ -44,16 +42,13 @@ services:
       - /docker/nc_redis/data:/data
   nc_nginx:
     image: nginx
-     # context: ./build/nc_nginx
-     # args:
-     #   DOMAIN_NAME: tsukihi.duckdns.org
     container_name: nc_nginx
     restart: always
     volumes:
       - /docker/nc_nginx/etc/nginx:/etc/nginx
       - /docker/nc_nginx/etc/letsencrypt:/etc/letsencrypt
     environment:
-      DOMAIN_NAME: tsukihi.duckdns.org
+      DOMAIN_NAME: oikura.duckdns.org
     ports:
       - "443:443"
       - "80:80"
