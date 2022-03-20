@@ -1,0 +1,18 @@
+#Conectar no container
+docker exec -it nc_nginx bash
+
+#Instalar pacotes necessários
+apt update && apt install -y vim certbot python3-certbot-nginx
+
+#Gerar o certificado via HTTP na porta 80
+certbot --test-cert --nginx -d $DOMAIN_NAME --register-unsafely-without-email --agree-tos
+
+#Ativar renovação automática
+sed -i '$ d' /etc/cron.d/certbot && echo '0 */23 * * * root certbot -q renew --nginx' >> /etc/cron.d/certbot
+
+#Depoy cert
+mv /etc/nginx/ssl/fullchain.pem /etc/nginx/ssl/fullchain.pem.ori
+ln -s /etc/letsencrypt/live/tsukihi.duckdns.org/fullchain.pem /etc/nginx/ssl/fullchain.pem
+
+mv /etc/nginx/ssl/privkey.pem /etc/nginx/ssl/privkey.pem.ori
+ln -s /etc/letsencrypt/live/tsukihi.duckdns.org/privkey.pem /etc/nginx/ssl/privkey.pem
