@@ -16,3 +16,7 @@ ln -s /etc/letsencrypt/live/$DOMAIN_NAME/fullchain.pem /etc/nginx/ssl/fullchain.
 
 mv /etc/nginx/ssl/privkey.pem /etc/nginx/ssl/privkey.pem.ori
 ln -s /etc/letsencrypt/live/$DOMAIN_NAME/privkey.pem /etc/nginx/ssl/privkey.pem
+
+# Testar e aplicar mudanças
+nginx -t
+nginx -s reload
