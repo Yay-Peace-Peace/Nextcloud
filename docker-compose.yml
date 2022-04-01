@@ -48,7 +48,7 @@ services:
       - /docker/nc_nginx/etc/nginx:/etc/nginx
       - /docker/nc_nginx/etc/letsencrypt:/etc/letsencrypt
     environment:
-      DOMAIN_NAME: oikura.duckdns.org
+      DOMAIN_NAME: nextcloud.example.com
     ports:
       - "443:443"
       - "80:80"
