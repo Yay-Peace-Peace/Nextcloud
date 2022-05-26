@@ -1,6 +1,7 @@
 <b>
 <pre>
-  Observação: é necesário alterar alguns aquivos antes de iniciar o container:
+Observação: é necesário alterar alguns aquivos antes de iniciar o container:
+
 -nc_nginx/etc/nginx/conf.d/nextcloud.example.com.conf: Alterar o nome para o nome do seu domínio
 -nc_nginx/etc/nginx/conf.d/nextcloud.example.com.conf: Dentro do arquivo, alterar todos os locais com nextcloud.example.com para o seu dominio
 -docker-compose.yml: Alterar as senhas do sistemas nas linhas que iniciam com MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD e NEXTCLOUD_ADMIN_PASSWORD
