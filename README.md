@@ -2,12 +2,12 @@
 <h3>
 Observação: é necesário alterar alguns aquivos antes de iniciar o container:
  </h3>
-  <p>
+  <pre>
 -nc_nginx/etc/nginx/conf.d/nextcloud.example.com.conf: Alterar o nome para o nome do seu domínio
 -nc_nginx/etc/nginx/conf.d/nextcloud.example.com.conf: Dentro do arquivo, alterar todos os locais com nextcloud.example.com para o seu dominio
 -docker-compose.yml: Alterar as senhas do sistemas nas linhas que iniciam com MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD e NEXTCLOUD_ADMIN_PASSWORD
 -Após a instalação, seguir o procedimento do arquivo POST_INSTALL.txt
-</p>
+</pre>
     
 </b>
 Procedimento para instalação:
