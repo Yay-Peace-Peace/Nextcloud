@@ -1,3 +1,6 @@
+docker-compose exec --user www-data nc_nextcloud php occ config:system:set default_phone_region --value="BR"
+
+
 #Conectar no container
 docker exec -it nc_nginx bash
 
