@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nc_nextcloud:
-    image: nextcloud:production-apache
+    image: nextcloud:24-apache
     container_name: nc_nextcloud
     restart: always
     volumes:
