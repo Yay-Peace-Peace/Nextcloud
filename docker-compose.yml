@@ -56,3 +56,18 @@ services:
       - "80:80"
     depends_on:
       - nc_nextcloud
+  nc_collabora:
+    image: collabora/code
+    container_name: nc_collabora
+    restart: always
+    environment:
+      DOMAIN: nc_nextcloud
+      USERNAME: admin
+      PASSWORD: fwiefwes2rsd
+    ports:
+      - "9980:9980"
+    cap_add:
+      - MKNOD
+    depends_on:
+      - nc_nextcloud
+      - nc_nginx
