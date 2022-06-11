@@ -16,6 +16,8 @@ services:
       NEXTCLOUD_TRUSTED_DOMAINS: "localhost 127.0.0.1 nc_nextcloud"
       REDIS_HOST: nc_redis
       REDIS_HOST_PORT: 6379
+      OVERWRITEHOST: nextcloud.example.com
+      OVERWRITEPROTOCOL: https
     depends_on:
       - nc_database
       - nc_redis
