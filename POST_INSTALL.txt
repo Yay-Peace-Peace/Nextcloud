@@ -12,7 +12,7 @@ apt update && apt install -y vim certbot python3-certbot-nginx
 certbot --nginx -d $DOMAIN_NAME --register-unsafely-without-email --agree-tos
 
 #Ativar renovação automática
-sed -i '$ d' /etc/cron.d/certbot && echo '30 */23 * * * root chmod -R 777 /etc/letsencrypt/archive/' >> /etc/cron.d/certbot && echo '0 */23 * * * root certbot -q renew --nginx' >> /etc/cron.d/certbot
+sed -i '$ d' /etc/cron.d/certbot && echo '30 */23 * * * root chmod -R 777 /etc/letsencrypt/archive/' >> /etc/cron.d/certbot && echo '0 */23 10 * * root certbot -q renew --force-renew --nginx' >> /etc/cron.d/certbot
 
 #Depoy cert
 mv /etc/nginx/ssl/fullchain.pem /etc/nginx/ssl/fullchain.pem.ori
