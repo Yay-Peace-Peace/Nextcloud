@@ -56,22 +56,22 @@ services:
       - "80:80"
     depends_on:
       - nc_nextcloud
-  nc_collabora:
-    image: collabora/code
-    container_name: nc_collabora
-    restart: always
-    environment:
-      DOMAIN: nc_nextcloud
-      USERNAME: admin
-      PASSWORD: fwiefwes2rsd
-    ports:
-      - "9980:9980"
-    cap_add:
-      - MKNOD
-    volumes:
-      - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/fullchain.pem:/etc/coolwsd/cert.pem:ro
-      - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/privkey.pem:/etc/coolwsd/key.pem:ro
-      - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/chain.pem:/etc/coolwsd/ca-chain.cert.pem:ro
-    depends_on:
-      - nc_nextcloud
-      - nc_nginx
+  #nc_collabora:
+  #  image: collabora/code
+  #  container_name: nc_collabora
+  #  restart: always
+  #  environment:
+  #    DOMAIN: nc_nextcloud
+  #    USERNAME: admin
+  #    PASSWORD: fwiefwes2rsd
+  #  ports:
+  #    - "9980:9980"
+  #  cap_add:
+  #    - MKNOD
+  #  volumes:
+  #    - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/fullchain.pem:/etc/coolwsd/cert.pem:ro
+  #    - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/privkey.pem:/etc/coolwsd/key.pem:ro
+  #    - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/chain.pem:/etc/coolwsd/ca-chain.cert.pem:ro
+  #  depends_on:
+  #    - nc_nextcloud
+  #    - nc_nginx
