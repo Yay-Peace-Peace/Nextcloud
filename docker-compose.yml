@@ -5,22 +5,22 @@ services:
     container_name: nc_nextcloud
     restart: always
     volumes:
-      - /docker/nc_nextcloud/var/www/html/:/var/www/html/
+      - /Nextcloud/nc_nextcloud/var/www/html/:/var/www/html/
     environment:
-      MYSQL_DATABASE: nextcloud
-      MYSQL_USER: nextclouduser
-      MYSQL_PASSWORD: Change2
-      MYSQL_HOST: nc_database
-      NEXTCLOUD_ADMIN_USER: admin
-      NEXTCLOUD_ADMIN_PASSWORD: Change3
-      NEXTCLOUD_TRUSTED_DOMAINS: "localhost 127.0.0.1 nc_nextcloud"
-      REDIS_HOST: nc_redis
-      REDIS_HOST_PORT: 6379
-      OVERWRITEHOST: nextcloud.example.com
-      OVERWRITEPROTOCOL: https
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_HOST
+      - NEXTCLOUD_ADMIN_USER
+      - NEXTCLOUD_ADMIN_PASSWORD
+      - NEXTCLOUD_TRUSTED_DOMAINS
+      - REDIS_HOST
+      - REDIS_HOST_PORT
+      - OVERWRITEHOST
+      - OVERWRITEPROTOCOL
+      - default_phone_region
     depends_on:
       - nc_database
-      - nc_redis
   nc_database:
     image: mysql
     container_name: nc_database
@@ -29,49 +29,38 @@ services:
     cap_add:
       - SYS_NICE
     volumes:
-      - /docker/nc_database/var/lib/mysql:/var/lib/mysql
+      - /Nextcloud/nc_database/var/lib/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: Change1
-      MYSQL_PASSWORD: Change2
-      MYSQL_DATABASE: nextcloud
-      MYSQL_USER: nextclouduser
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
   nc_redis:
     image: redis:alpine
     container_name: nc_redis
     restart: always
     volumes:
-      - /docker/nc_redis/usr/local/etc/redis:/usr/local/etc/redis
-      - /docker/nc_redis/data:/data
+      - /Nextcloud/nc_redis/usr/local/etc/redis:/usr/local/etc/redis
+      - /Nextcloud/nc_redis/data:/data
   nc_nginx:
     image: nginx
     container_name: nc_nginx
     restart: always
     volumes:
-      - /docker/nc_nginx/etc/nginx:/etc/nginx
-      - /docker/nc_nginx/etc/letsencrypt:/etc/letsencrypt
+      - /Nextcloud/nc_nginx/etc/nginx:/etc/nginx
+      - /Nextcloud/nc_nginx/etc/letsencrypt:/etc/letsencrypt
     environment:
-      DOMAIN_NAME: nextcloud.example.com
+      - DOMAIN_NAME
     ports:
       - "443:443"
       - "80:80"
-    depends_on:
-      - nc_nextcloud
-  #nc_collabora:
-  #  image: collabora/code
-  #  container_name: nc_collabora
-  #  restart: always
-  #  environment:
-  #    DOMAIN: nc_nextcloud
-  #    USERNAME: admin
-  #    PASSWORD: fwiefwes2rsd
-  #  ports:
-  #    - "9980:9980"
-  #  cap_add:
-  #    - MKNOD
-  #  volumes:
-  #    - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/fullchain.pem:/etc/coolwsd/cert.pem:ro
-  #    - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/privkey.pem:/etc/coolwsd/key.pem:ro
-  #    - /docker/nc_nginx/etc/letsencrypt/live/nextcloud.example.com/chain.pem:/etc/coolwsd/ca-chain.cert.pem:ro
-  #  depends_on:
-  #    - nc_nextcloud
-  #    - nc_nginx
+  nc_collabora:
+    image: collabora/code
+    container_name: nc_collabora
+    restart: always
+    environment:
+      - DOMAIN
+    expose:
+      - "9980"
+    cap_add:
+      - MKNOD

@@ -1,4 +1,5 @@
-docker-compose exec --user www-data nc_nextcloud php occ config:system:set default_phone_region --value="BR"
+#docker-compose exec --user www-data nc_nextcloud php occ config:system:set default_phone_region --value="BR"
+docker-compose exec --user www-data nc_nextcloud php occ config:system:set default_phone_region --value="$default_phone_region"
 docker-compose exec nc_nextcloud apt -y update
 docker-compose exec nc_nextcloud apt -y install libmagickcore-6.q16-6-extra
 
@@ -11,12 +12,6 @@ apt update && apt install -y vim certbot python3-certbot-nginx
 #Gerar o certificado via HTTP na porta 80
 certbot --nginx -d $DOMAIN_NAME --register-unsafely-without-email --agree-tos
 
-#Ativar renovação automática
-#No host onde o Docker está instalado, editar a crontab:
-crontab -e
-#Adicionar as linhas abaixo
-5 23 * * 1 /bin/docker exec nc_nginx certbot -q renew --force-renew --nginx 
-15 23 * * 1 /bin/docker exec nc_nginx nginx -s reload
 
 
 #Depoy cert
@@ -29,3 +24,11 @@ ln -s /etc/letsencrypt/live/$DOMAIN_NAME/privkey.pem /etc/nginx/ssl/privkey.pem
 # Testar e aplicar mudanças
 nginx -t
 nginx -s reload
+
+
+#Ativar renovação automática
+#No host onde o Docker está instalado, editar a crontab:
+crontab -e
+#Adicionar as linhas abaixo
+5 23 * * 1 /bin/docker exec nc_nginx certbot -q renew --force-renew --nginx 
+15 23 * * 1 /bin/docker exec nc_nginx nginx -s reload

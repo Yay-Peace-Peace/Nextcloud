@@ -3,22 +3,23 @@
 Observação: é necesário alterar alguns aquivos antes de iniciar o container:
  </h3>
   <pre>
-- nc_nginx/etc/nginx/conf.d/nextcloud.example.com.conf: Alterar o nome para o nome do seu domínio
-- nc_nginx/etc/nginx/conf.d/nextcloud.example.com.conf: Dentro do arquivo, alterar todos os locais com nextcloud.example.com para o seu dominio
-- docker-compose.yml: Alterar DOMAIN_NAME: nextcloud.example.com para o seu dominio
-- docker-compose.yml: Alterar as senhas do sistemas nas linhas que iniciam com MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD e NEXTCLOUD_ADMIN_PASSWORD
+- .env -> alterar MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD, DOMAIN_NAME, OVERWRITEHOST, domain
 - Após a instalação, seguir o procedimento do arquivo POST_INSTALL.txt
 </pre>
     
 </b>
 Procedimento para instalação:
 <pre>
-mkdir /docker
-wget https://codeload.github.com/YayPeace/Nextcloud/zip/refs/heads/main -o main.zip
-unzip ./main
-mv ./Nextcloud-main/* /docker
-chmod -R 777 /docker/nc_nginx/
-cd /docker
+# Primeiramente instalar o docker, docker-compose e git
+
+mkdir /Nextcloud
+cd /Nextcloud
+git clone --branch v3.0 https://github.com/YayPeace/Nextcloud.git
+cp -rf /Nextcloud/Nextcloud/ /
+rm -rf /Nextcloud/Nextcloud/
+
+cd /Nextcloud
 docker-compose up -d
-chmod -R 777 /docker/nc_nginx/
+
+#Aguardar alguns minutos antes de acessar o Nextcloude e se guir os procedimentos do arquivo POST_INSTALL.txt
 </pre>
