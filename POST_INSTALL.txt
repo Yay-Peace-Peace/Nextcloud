@@ -1,5 +1,4 @@
-#docker-compose exec --user www-data nc_nextcloud php occ config:system:set default_phone_region --value="BR"
-docker-compose exec --user www-data nc_nextcloud php occ config:system:set default_phone_region --value="$default_phone_region"
+docker-compose exec --user www-data nc_nextcloud php occ config:system:set default_phone_region --value="BR"
 docker-compose exec nc_nextcloud apt -y update
 docker-compose exec nc_nextcloud apt -y install libmagickcore-6.q16-6-extra
 
