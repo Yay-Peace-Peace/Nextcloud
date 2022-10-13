@@ -6,7 +6,7 @@ Utilizar o script de instalação:
 Instalação Via Script:
 </h3
   ```
-fetch https://raw.githubusercontent.com/vitorarend/Nextcloud/v3.0/install.sh && chmod +x install.sh && sh install.sh
+    fetch https://raw.githubusercontent.com/vitorarend/Nextcloud/v3.0/install.sh && chmod +x install.sh && sh install.sh
   ```
 - Após a instalação, seguir o procedimento do arquivo POST_INSTALL.txt
 <h3>
