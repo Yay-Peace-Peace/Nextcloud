@@ -151,8 +151,6 @@ then
     ### Alterar a senha do admin do nextcloud
     sed -i "s/nextcloudwbpasswd2776/$NEXTCLOUD_USER_PASSWD/g" "$temporaryConfigFile"
     ### Altera o caminho de instalação do Docker-Compose
-    echo "testando: $nextCloudInstallDir"
-    echo "teste2 : $temporaryComposeConfiguration"
     sed -i "s,\/Nextcloud,$nextCloudInstallDir,g" "$temporaryComposeConfiguration"
     
 
