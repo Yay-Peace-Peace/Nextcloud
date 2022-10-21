@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nc_nextcloud:
-    image: nextcloud:24-apache
+    image: nextcloud:latest
     container_name: nc_nextcloud
     restart: always
     volumes:
@@ -54,13 +54,13 @@ services:
     ports:
       - "443:443"
       - "80:80"
-  nc_collabora:
-    image: collabora/code
-    container_name: nc_collabora
-    restart: always
-    environment:
-      - DOMAIN
-    expose:
-      - "9980"
-    cap_add:
-      - MKNOD
+  #nc_collabora:
+  #  image: collabora/code
+  #  container_name: nc_collabora
+  #  restart: always
+  #  environment:
+  #    - DOMAIN
+  #  expose:
+  #    - "9980"
+  #  cap_add:
+  #    - MKNOD
