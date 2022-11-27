@@ -26,7 +26,7 @@ Procedimento para instalação:
 
 mkdir /Nextcloud
 cd /Nextcloud
-git clone --branch v3.0 https://github.com/vitorarend/Nextcloud.git
+git clone --branch Master https://github.com/vitorarend/Nextcloud.git
 cp -rf /Nextcloud/Nextcloud/ /
 rm -rf /Nextcloud/Nextcloud/
 
